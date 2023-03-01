@@ -7,14 +7,13 @@
 //
 
 import SwiftUI
-import TemplatePackage
 
 
 @main
 struct UITestsApp: App {
     var body: some Scene {
         WindowGroup {
-            Text(TemplatePackage().stanford)
+            ContentView()
         }
     }
 }

@@ -12,21 +12,21 @@ import PackageDescription
 
 
 let package = Package(
-    name: "TemplatePackage",
+    name: "ImageSource",
     platforms: [
         .iOS(.v16)
     ],
     products: [
-        .library(name: "TemplatePackage", targets: ["TemplatePackage"])
+        .library(name: "ImageSource", targets: ["ImageSource"])
     ],
     targets: [
         .target(
-            name: "TemplatePackage"
+            name: "ImageSource"
         ),
         .testTarget(
-            name: "TemplatePackageTests",
+            name: "ImageSourceTests",
             dependencies: [
-                .target(name: "TemplatePackage")
+                .target(name: "ImageSource")
             ]
         )
     ]
