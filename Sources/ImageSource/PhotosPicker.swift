@@ -22,7 +22,9 @@ class PhotosPickerDelegate: NSObject, PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
-        guard let provider = results.first?.itemProvider else { return }
+        guard let provider = results.first?.itemProvider else {
+            return
+        }
         
         guard provider.canLoadObject(ofClass: UIImage.self) else {
             self.phPickerViewControllerWrapper.saveImage(.failure(.importFailed))
@@ -43,7 +45,7 @@ class PhotosPickerDelegate: NSObject, PHPickerViewControllerDelegate {
 
 struct PHPickerViewControllerWrapper: UIViewControllerRepresentable {
     @Environment(\.presentationMode) private var presentationMode
-    fileprivate let saveImage: (ImageState) -> ()
+    fileprivate let saveImage: (ImageState) -> Void
     
     
     init(

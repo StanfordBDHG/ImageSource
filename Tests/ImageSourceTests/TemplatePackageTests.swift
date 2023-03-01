@@ -6,10 +6,16 @@
 // SPDX-License-Identifier: MIT
 //
 
-@testable import TemplatePackage
+import ImageSource
 import XCTest
 
 
 final class ImageSource: XCTestCase {
-    func testImageSource() throws { }
+    func testImageSource() throws {
+        let emptyImageState = ImageState.empty
+        XCTAssertNil(emptyImageState.image)
+        
+        let successImageState = try ImageState.success(XCTUnwrap(UIImage(systemName: "hand.wave.fill")))
+        XCTAssertNotNil(successImageState.image)
+    }
 }

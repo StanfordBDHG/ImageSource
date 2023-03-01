@@ -6,16 +6,16 @@
 // SPDX-License-Identifier: MIT
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 
 class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    private let saveImage: (ImageState) -> ()
+    private let saveImage: (ImageState) -> Void
     private let presentationMode: Binding<PresentationMode>
     
     
-    fileprivate init(saveImage: @escaping (ImageState) -> (), presentationMode: Binding<PresentationMode>) {
+    fileprivate init(saveImage: @escaping (ImageState) -> Void, presentationMode: Binding<PresentationMode>) {
         self.saveImage = saveImage
         self.presentationMode = presentationMode
         
@@ -42,9 +42,9 @@ class ImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigati
 }
 
 
-fileprivate struct UIImagePickerControllerWrapper: UIViewControllerRepresentable {
+private struct UIImagePickerControllerWrapper: UIViewControllerRepresentable {
     @Environment(\.presentationMode) private var presentationMode
-    private let saveImage: (ImageState) -> ()
+    private let saveImage: (ImageState) -> Void
     
     
     fileprivate init(image: Binding<ImageState>) {

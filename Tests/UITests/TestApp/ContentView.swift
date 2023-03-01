@@ -14,12 +14,30 @@ struct ContentView: View {
     @State var image: UIImage?
     
     
+    private var swiftUIImage: Image? {
+        image.flatMap {
+            Image(uiImage: $0)
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             ImageSource(image: $image)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .padding()
                 .navigationTitle("Image Source Example")
+                .toolbar {
+                    if let swiftUIImage = swiftUIImage {
+                        ToolbarItem {
+                            ShareLink(
+                                item: swiftUIImage,
+                                subject: Text("Image Source"),
+                                message: Text("Check it out the Image Source Swift Package: https://github.com/StanfordBDHG/ImageSource"),
+                                preview: SharePreview("Image Source Example", image: swiftUIImage)
+                            )
+                        }
+                    }
+                }
         }
     }
 }
